@@ -31,7 +31,7 @@ Run these commands from the terminal in the folder where your vagrant is install
 
 ## Versioning
 
-This project use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/iarwa/logs-analysis-project/tags).
+This project use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/iarwa/Log-analysis-project).
 
 ## Authors
 
@@ -39,4 +39,4 @@ This project use [SemVer](http://semver.org/) for versioning. For the versions a
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+This project is licensed under the MIT License - see the [LICENSE.md](https://github.com/iarwa/Log-analysis-project/blob/master/LICENSE) file for details
