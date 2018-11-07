@@ -1,4 +1,4 @@
-
+#!/usr/bin/env python
 
 import psycopg2
 
@@ -39,51 +39,48 @@ query3 = """ SELECT q1.day, ROUND(q2.views * 100.0 / q1.views, 2) AS error
              LIMIT 1; """
 
 
+def execute_query(query):
+    try:
+        db = psycopg2.connect(dbname=DBNAME)
+        c = db.cursor()
+        c.execute(query)
+        result = c.fetchall()
+        db.close()
+        return result
+    except BaseException:
+        return "Unable to connect to the database"
+
+
 def get_popular_articles():
 
     """Return the most popular three articles of all time,
        most popular article at the top."""
-    try:
-        db = psycopg2.connect(dbname=DBNAME)
-        c = db.cursor()
-        c.execute(query1)
-        result = c.fetchall()
-        for article in result:
+
+    popular_articles = execute_query(query1)
+
+    for article in popular_articles:
             print("{} -- {} views".format(article[0], article[1]))
-        db.close()
-    except BaseException:
-        return "Unable to connect to the database"
 
 
 def get_popular_authors():
 
     """Return the most popular article authors of all time,
        most popular author at the top."""
-    try:
-        db = psycopg2.connect(dbname=DBNAME)
-        c = db.cursor()
-        c.execute(query2)
-        result = c.fetchall()
-        for author in result:
+
+    popular_authors = execute_query(query2)
+
+    for author in popular_authors:
             print("{} -- {} views".format(author[0], author[1]))
-        db.close()
-    except BaseException:
-        return "Unable to connect to the database"
 
 
 def get_error_requests():
 
     """Return which days with more than 1'%' of its requests lead to errors."""
-    try:
-        db = psycopg2.connect(dbname=DBNAME)
-        c = db.cursor()
-        c.execute(query3)
-        result = c.fetchall()
-        for errors in result:
+
+    error_requests = execute_query(query3)
+
+    for errors in error_requests:
             print("{} -- {} % errors".format(errors[0], errors[1]))
-        db.close()
-    except BaseException:
-        return "Unable to connect to the database"
 
 
 if __name__ == "__main__":
